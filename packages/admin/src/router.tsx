@@ -2512,8 +2512,8 @@ function CommentsPage() {
 			onCommentStatusChange={(id, status) =>
 				statusMutation.mutateAsync({ id, status }).catch(() => {})
 			}
-			onCommentDelete={(id) => deleteMutation.mutateAsync(id).catch(() => {})}
-			onBulkAction={(ids, action) => bulkMutation.mutateAsync({ ids, action }).catch(() => {})}
+			onCommentDelete={(id) => deleteMutation.mutateAsync(id)}
+			onBulkAction={(ids, action) => bulkMutation.mutateAsync({ ids, action })}
 			onLoadMore={() => {
 				if (hasNextPage) void fetchNextPage();
 			}}
@@ -2523,6 +2523,8 @@ function CommentsPage() {
 			}
 			deleteError={deleteMutation.error}
 			onDeleteErrorReset={() => deleteMutation.reset()}
+			bulkError={bulkMutation.error}
+			onBulkErrorReset={() => bulkMutation.reset()}
 		/>
 	);
 }
